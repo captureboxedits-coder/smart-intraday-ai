@@ -1,0 +1,177 @@
+export default function SmartIntradayAI() {
+  const signals = [
+    {
+      market: "NIFTY",
+      signal: "STRONG BUY",
+      entry: "24980",
+      sl: "24920",
+      target: "25120",
+      strength: "94%",
+    },
+    {
+      market: "BANKNIFTY",
+      signal: "WAIT",
+      entry: "-",
+      sl: "-",
+      target: "-",
+      strength: "61%",
+    },
+    {
+      market: "SENSEX",
+      signal: "STRONG SELL",
+      entry: "81850",
+      sl: "82010",
+      target: "81420",
+      strength: "91%",
+    },
+  ];
+
+  return (
+    <div className="min-h-screen bg-black text-white p-6">
+      <div className="max-w-7xl mx-auto">
+        <div className="flex flex-col md:flex-row items-center justify-between mb-8 gap-4">
+          <div>
+            <h1 className="text-4xl font-bold text-green-400">
+              SMART INTRADAY AI
+            </h1>
+            <p className="text-gray-400 mt-2">
+              AI Powered Intraday Trading Dashboard
+            </p>
+          </div>
+
+          <div className="bg-zinc-900 rounded-2xl px-6 py-4 border border-zinc-700 shadow-xl">
+            <p className="text-sm text-gray-400">Market Status</p>
+            <p className="text-green-400 font-bold text-xl">LIVE MARKET</p>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+          <div className="bg-zinc-900 rounded-3xl p-6 border border-zinc-800 shadow-2xl">
+            <h2 className="text-xl font-bold mb-4 text-green-400">NIFTY 50</h2>
+            <p className="text-4xl font-bold">24,965</p>
+            <p className="text-green-400 mt-2">+125.40 (+0.52%)</p>
+          </div>
+
+          <div className="bg-zinc-900 rounded-3xl p-6 border border-zinc-800 shadow-2xl">
+            <h2 className="text-xl font-bold mb-4 text-blue-400">
+              BANKNIFTY
+            </h2>
+            <p className="text-4xl font-bold">55,420</p>
+            <p className="text-green-400 mt-2">+215.80 (+0.39%)</p>
+          </div>
+
+          <div className="bg-zinc-900 rounded-3xl p-6 border border-zinc-800 shadow-2xl">
+            <h2 className="text-xl font-bold mb-4 text-red-400">SENSEX</h2>
+            <p className="text-4xl font-bold">81,930</p>
+            <p className="text-red-400 mt-2">-45.50 (-0.05%)</p>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+          {signals.map((item, index) => (
+            <div
+              key={index}
+              className="bg-zinc-900 rounded-3xl p-6 border border-zinc-800 shadow-2xl"
+            >
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="text-2xl font-bold">{item.market}</h2>
+                <span
+                  className={`px-4 py-2 rounded-full text-sm font-bold ${
+                    item.signal.includes("BUY")
+                      ? "bg-green-500/20 text-green-400"
+                      : item.signal.includes("SELL")
+                      ? "bg-red-500/20 text-red-400"
+                      : "bg-yellow-500/20 text-yellow-300"
+                  }`}
+                >
+                  {item.signal}
+                </span>
+              </div>
+
+              <div className="space-y-3">
+                <div className="flex justify-between">
+                  <span className="text-gray-400">Entry</span>
+                  <span className="font-bold">{item.entry}</span>
+                </div>
+
+                <div className="flex justify-between">
+                  <span className="text-gray-400">Stop Loss</span>
+                  <span className="font-bold text-red-400">{item.sl}</span>
+                </div>
+
+                <div className="flex justify-between">
+                  <span className="text-gray-400">Target</span>
+                  <span className="font-bold text-green-400">{item.target}</span>
+                </div>
+
+                <div className="flex justify-between">
+                  <span className="text-gray-400">Strength</span>
+                  <span className="font-bold text-cyan-400">
+                    {item.strength}
+                  </span>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="bg-zinc-900 rounded-3xl p-6 border border-zinc-800 shadow-2xl mb-8">
+          <h2 className="text-2xl font-bold mb-6 text-purple-400">
+            Strategy Conditions
+          </h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="bg-black rounded-2xl p-5 border border-green-500/30">
+              <h3 className="text-xl font-bold text-green-400 mb-4">
+                BUY Strategy
+              </h3>
+
+              <ul className="space-y-3 text-gray-300">
+                <li>✅ After 10:30 AM</li>
+                <li>✅ Strong Green Candle</li>
+                <li>✅ Breakout Above Previous High</li>
+                <li>✅ Retest Valid</li>
+                <li>✅ EMA 9 &gt; EMA 21 &gt; EMA 50</li>
+                <li>✅ RSI Above 60</li>
+                <li>✅ MACD Bullish</li>
+                <li>✅ Price Above VWAP</li>
+              </ul>
+            </div>
+
+            <div className="bg-black rounded-2xl p-5 border border-red-500/30">
+              <h3 className="text-xl font-bold text-red-400 mb-4">
+                SELL Strategy
+              </h3>
+
+              <ul className="space-y-3 text-gray-300">
+                <li>✅ After 10:30 AM</li>
+                <li>✅ Strong Red Candle</li>
+                <li>✅ Breakdown Below Previous Low</li>
+                <li>✅ Retest Valid</li>
+                <li>✅ EMA 9 &lt; EMA 21 &lt; EMA 50</li>
+                <li>✅ RSI Below 40</li>
+                <li>✅ MACD Bearish</li>
+                <li>✅ Price Below VWAP</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-zinc-900 rounded-3xl p-6 border border-zinc-800 shadow-2xl">
+          <h2 className="text-2xl font-bold mb-6 text-cyan-400">
+            TradingView Live Chart
+          </h2>
+
+          <div className="rounded-2xl overflow-hidden border border-zinc-700">
+            <iframe
+              title="tradingview"
+              src="https://s.tradingview.com/widgetembed/?frameElementId=tradingview_chart&symbol=NSE%3ANIFTY&interval=5&hidesidetoolbar=1&symboledit=1&saveimage=1&toolbarbg=F1F3F6&studies=[]&theme=dark"
+              width="100%"
+              height="500"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
